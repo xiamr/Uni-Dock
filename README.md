@@ -7,6 +7,10 @@ The [paper](https://pubs.acs.org/doi/10.1021/acs.jctc.2c01145) has been accepted
 
 ![Runtime performance of Uni-Dock on different GPUs in three modes](assets/gpu_speeds.png)
 
+## Changelog
+
+- V1.1.0: Support SDF format input for vina and vinardo scoring functions.
+
 ## Usage Guideline
 
 We offer the software **for academic purposes only**. By downloading and using Uni-Dock, you are agreeing to the usage guideline ([en](https://github.com/dptech-corp/Uni-Dock/blob/main/license/usage-guidelines-en.md), [zh](https://github.com/dptech-corp/Uni-Dock/blob/main/license/usage-guidelines-zh.md)).
@@ -67,12 +71,12 @@ unidock --receptor <receptor.pdbqt> \
 >> unidock --help
 
 Input:
-  --receptor arg             rigid part of the receptor (PDBQT)
-  --flex arg                 flexible side chains, if any (PDBQT)
+  --receptor arg             rigid part of the receptor (PDBQT or PDB)
+  --flex arg                  flexible side chains, if any (PDBQT or PDB)
   --ligand arg               ligand (PDBQT)
-  --ligand_index arg         file containing paths to ligands
+  --ligand_index arg         file containing paths to ligands (PDBQT or SDF)
   --batch arg                batch ligand (PDBQT)
-  --gpu_batch arg            gpu batch ligand (PDBQT)
+  --gpu_batch arg            gpu batch ligand (PDBQT or SDF)
   --scoring arg (=vina)      scoring function (ad4, vina or vinardo)
 
 Search space (required):
@@ -114,6 +118,7 @@ Misc (optional):
   --max_step arg (=0)        maximum number of steps in each MC run (if zero,
                              which is the default, the number of MC steps is
                              based on heuristics)
+  --refine_step arg (=5)     number of steps in refinement, default=5
   --max_gpu_memory arg (=0)  maximum gpu memory to use (default=0, use all
                              available GPU memory to optain maximum batch size)
   --search_mode arg          search mode of unidock (fast, balance, detail), using
